@@ -1,14 +1,25 @@
 {
-  "name": "broken-field-6586",
+  "name": "metadata-scraper",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "deploy": "wrangler deploy",
-    "start": "wrangler dev"
+    "start": "wrangler dev",
+    "test": "vitest"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20230419.0",
     "typescript": "^5.0.4",
+    "vite": "^4.4.9",
+    "vitest": "^0.34.5",
     "wrangler": "^3.0.0"
+  },
+  "dependencies": {
+    "file-extension": "^4.0.5",
+    "html-entities": "^2.4.0",
+    "isomorphic-dompurify": "^1.8.0",
+    "tidy-url": "^1.7.3",
+    "unique-random-array": "^3.0.0",
+    "url-unshort": "^6.1.0"
   }
 }

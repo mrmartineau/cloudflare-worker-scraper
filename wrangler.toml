@@ -1,4 +1,4 @@
-name = "broken-field-6586"
+name = "zm-scraper"
 main = "src/worker.ts"
 compatibility_date = "2023-08-21"
 
