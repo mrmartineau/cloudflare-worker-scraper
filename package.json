@@ -19,6 +19,7 @@
     "html-entities": "^2.4.0",
     "isomorphic-dompurify": "^1.8.0",
     "tidy-url": "^1.7.3",
+    "top-user-agents": "^1.0.62",
     "unique-random-array": "^3.0.0",
     "url-unshort": "^6.1.0"
   }

@@ -1,5 +1,6 @@
 import { decode } from 'html-entities'
 import { ScrapeResponse } from './worker'
+import { randomUserAgent } from './randomUserAgent'
 
 const cleanText = (string: string) => decode(string.trim(), { level: 'html5' })
 
@@ -23,7 +24,11 @@ class Scraper {
 
   async fetch(url: string) {
     this.url = url
-    this.response = await fetch(url)
+    this.response = await fetch(url, {
+      headers: {
+        'User-Agent': randomUserAgent(),
+      },
+    })
 
     const server = this.response.headers.get('server')
 
