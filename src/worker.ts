@@ -41,7 +41,7 @@ async function handleRequest(request: Request) {
   try {
     scraper = await new Scraper().fetch(url)
   } catch (error) {
-    return generateErrorJSONResponse(error)
+    return generateErrorJSONResponse(error, url)
   }
 
   try {
@@ -200,7 +200,7 @@ async function handleRequest(request: Request) {
       response.jsonld = JSON.parse(response.jsonld as string)
     }
   } catch (error) {
-    return generateErrorJSONResponse(error)
+    return generateErrorJSONResponse(error, url)
   }
 
   return generateJSONResponse(response)

@@ -9,10 +9,11 @@ const generateJSONResponse = (obj: any) => {
   })
 }
 
-const generateErrorJSONResponse = (error: unknown) => {
+const generateErrorJSONResponse = (error: unknown, url?: string) => {
   const errorMessage = getErrorMessage(error)
   return generateJSONResponse({
     error: errorMessage,
+    url,
   })
 }
 
