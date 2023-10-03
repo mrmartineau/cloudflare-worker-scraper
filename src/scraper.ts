@@ -7,7 +7,7 @@ import { generateErrorJSONResponse } from './json-response'
 const cleanText = (string: string) => decode(string.trim(), { level: 'html5' })
 
 type GetValueOption = { selector: string; attribute?: string }
-type GetMetadataOptions = {
+export type GetMetadataOptions = {
   name: string
   selectors: GetValueOption[]
   multiple: boolean
@@ -25,7 +25,7 @@ class Scraper {
     return this
   }
 
-  async fetch(url: string) {
+  async fetch(url: string): Promise<Response> {
     this.url = url
     this.unshortenedInfo
     try {
@@ -53,7 +53,7 @@ class Scraper {
       throw new Error(`Status ${this.response.status} requesting ${url}`)
     }
 
-    return this
+    return this.response
   }
 
   async getMetadata(

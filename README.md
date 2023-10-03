@@ -4,8 +4,7 @@ It uses a Cloudflare's `HTMLRewriter` to scrape the page for metadata and return
 
 ### Features
 
-- super fast metadata scraping using rules based on [Metascraper's rules](https://metascraper.js.org/#/?id=how-it-works) to pick out the metadata for a given property
-  - these rules can easily be
+- super fast metadata scraping using rules based on [Metascraper's rules](https://metascraper.js.org/#/?id=how-it-works) to pick out the metadata for a given property. These rules can easily be modified to suit your needs, they are defined in [`src/scraper-rules.ts`](https://github.com/mrmartineau/cloudflare-worker-scraper/blob/main/src/scraper-rules.ts)
 - resolves short urls (e.g. https://t.co/wy9S5P0Cd2) and unshortens them
 - option to clean url tracking params (e.g. `utm_*` and `fbclid` using the `cleanUrl` query param, see below)
 - tries to infer the link type and returns that in the `urlType` property, will be one of: `'link' | 'video' | 'audio' | 'recipe' | 'image' | 'document' | 'article' | 'game' | 'book' | 'event' | 'product' | 'note' | 'file'`
