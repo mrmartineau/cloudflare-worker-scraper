@@ -2,13 +2,14 @@
 
 It uses a Cloudflare's `HTMLRewriter` to scrape the page for metadata and returns it as JSON.
 
-It also uses a simplified version of [Metascraper's rules](https://metascraper.js.org/#/?id=how-it-works) to pick out the metadata for a given property.
-
 ### Features
-- super fast metadata scraping
+
+- super fast metadata scraping using rules based on [Metascraper's rules](https://metascraper.js.org/#/?id=how-it-works) to pick out the metadata for a given property
+  - these rules can easily be
 - resolves short urls (e.g. https://t.co/wy9S5P0Cd2) and unshortens them
 - option to clean url tracking params (e.g. `utm_*` and `fbclid` using the `cleanUrl` query param, see below)
 - tries to infer the link type and returns that in the `urlType` property, will be one of: `'link' | 'video' | 'audio' | 'recipe' | 'image' | 'document' | 'article' | 'game' | 'book' | 'event' | 'product' | 'note' | 'file'`
+- the worker randomises user-agent strings to avoid being blocked
 
 ### URL parameters:
 
@@ -17,8 +18,12 @@ It also uses a simplified version of [Metascraper's rules](https://metascraper.j
 
 Once deployed to **Cloudflare**, add a `url` query param for the URL you want to scrape, e.g.
 
-```
+```sh
+# Basic example
 https://worker.cloudflare.com/?url=https://zander.wtf
+
+# Example with `cleanUrl=true`
+https://worker.cloudflare.com/?cleanUrl=true&url=https://poetsroad.bandcamp.com/?from=search&search_item_id=1141951669&search_item_type=b&search_match_part=%3F&search_page_id=1748155363&search_page_no=1&search_rank=1&search_sig=a9a9cbdfc454df7c2999f097dc8a216b
 ```
 
 Response:
@@ -80,6 +85,10 @@ From [a YouTube video](https://www.youtube.com/watch?v=ctEksNz7tqg):
   "urlType": "video"
 }
 ```
+
+## Improvements and suggestions
+
+Scraping metadata from a page is a tricky business, so if you have any suggestions or improvements, please [open an issue](https://github.com/mrmartineau/cloudflare-worker-scraper/issues/new) or [submit a PR](https://github.com/mrmartineau/cloudflare-worker-scraper/pulls?q=is:pr+is:open+sort:updated-desc), they are always welcome!
 
 ---
 
