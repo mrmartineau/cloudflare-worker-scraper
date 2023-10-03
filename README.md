@@ -5,15 +5,15 @@ It uses a Cloudflare's `HTMLRewriter` to scrape the page for metadata and return
 It also uses a simplified version of [Metascraper's rules](https://metascraper.js.org/#/?id=how-it-works) to pick out the metadata for a given property.
 
 ### Features
-- super fast metadata scraping using
+- super fast metadata scraping
 - resolves short urls (e.g. https://t.co/wy9S5P0Cd2) and unshortens them
-- option to clean url tracking params (using the `cleanUrl` query param, see below)
+- option to clean url tracking params (e.g. `utm_*` and `fbclid` using the `cleanUrl` query param, see below)
 - tries to infer the link type and returns that in the `urlType` property, will be one of: `'link' | 'video' | 'audio' | 'recipe' | 'image' | 'document' | 'article' | 'game' | 'book' | 'event' | 'product' | 'note' | 'file'`
 
 ### URL parameters:
 
 - `url` - the URL to scrape
-- `cleanUrl` - if `true`, the URL will be cleaned up to remove any tracking params, e.g. `utm_*` and `fbclid`
+- `cleanUrl` - if `true`, the URL will be cleaned up to remove any tracking params
 
 Once deployed to **Cloudflare**, add a `url` query param for the URL you want to scrape, e.g.
 
