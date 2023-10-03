@@ -4,6 +4,12 @@ It uses a Cloudflare's `HTMLRewriter` to scrape the page for metadata and return
 
 It also uses a simplified version of [Metascraper's rules](https://metascraper.js.org/#/?id=how-it-works) to pick out the metadata for a given property.
 
+### Features
+- super fast metadata scraping using
+- resolves short urls (e.g. https://t.co/wy9S5P0Cd2) and unshortens them
+- option to clean url tracking params (using the `cleanUrl` query param, see below)
+- tries to infer the link type and returns that in the `urlType` property, will be one of: `'link' | 'video' | 'audio' | 'recipe' | 'image' | 'document' | 'article' | 'game' | 'book' | 'event' | 'product' | 'note' | 'file'`
+
 ### URL parameters:
 
 - `url` - the URL to scrape
@@ -17,7 +23,7 @@ https://worker.cloudflare.com/?url=https://zander.wtf
 
 Response:
 
-From my website:
+From [my website](https://zander.wtf):
 
 ```json
 {
@@ -35,12 +41,13 @@ From my website:
   "video": "",
   "keywords": "",
   "jsonld": "",
+  "cleaned_url": "https://zander.wtf",
   "url": "https://zander.wtf",
   "urlType": "link"
 }
 ```
 
-From A YouTube video:
+From [a YouTube video](https://www.youtube.com/watch?v=ctEksNz7tqg):
 
 ```json
 {
@@ -50,7 +57,7 @@ From A YouTube video:
   "image": "https://i.ytimg.com/vi/ctEksNz7tqg/maxresdefault.jpg",
   "feeds": [],
   "date": "2023-09-19",
-  "lang": "en-GB",
+  "lang": "en",
   "logo": "",
   "video": "https://www.youtube.com/embed/ctEksNz7tqg",
   "keywords": "red bull, redbull, action sports, extreme sports, sport videos, action, sport, red bull bike, bike, downhill, pov, mtb, pov mtb, urban downhill, urban, downhill mtb, urban downhill racing, racing, DRONE, drone, fpv drone, dutch drone gods, drone shot, hardline, red bull hardline, hardest mountain bike race, hardest race, hard line, hardest drone shot, downhill mountain bike, downhill race, hardest mountain bike, hardest mtb, kade edwards, kade, edwards, wales, welsh, one shot",
@@ -68,6 +75,7 @@ From A YouTube video:
       }
     ]
   },
+  "cleaned_url": "https://www.youtube.com/watch?v=ctEksNz7tqg",
   "url": "https://www.youtube.com/watch?v=ctEksNz7tqg",
   "urlType": "video"
 }
