@@ -4,6 +4,7 @@ import {
 } from './json-response'
 import { linkType } from './link-type'
 import Scraper from './scraper'
+import { TidyURL } from 'tidy-url'
 
 addEventListener('fetch', (event: FetchEvent) => {
   event.respondWith(handleRequest(event.request))
@@ -28,6 +29,7 @@ async function handleRequest(request: Request) {
   let response: Record<string, ScrapeResponse>
   let scraper
   let url = searchParams.get('url')
+  const cleanUrl = searchParams.get('cleanUrl')
   if (!url) {
     return generateErrorJSONResponse(
       'Please provide a `url` query parameter, e.g. ?url=https://example.com'
@@ -194,7 +196,12 @@ async function handleRequest(request: Request) {
       },
     ])
 
-    response.url = url
+    const unshortenedUrl = scraper.response.url
+    if (cleanUrl === 'true') {
+      const cleanedUrl = TidyURL.clean(unshortenedUrl || url)
+      response.cleaned_url = cleanedUrl.url
+    }
+    response.url = unshortenedUrl
     response.urlType = linkType(url, false)
     if (response?.jsonld) {
       response.jsonld = JSON.parse(response.jsonld as string)

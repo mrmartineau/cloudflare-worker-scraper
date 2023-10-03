@@ -4,7 +4,12 @@ It uses a Cloudflare's `HTMLRewriter` to scrape the page for metadata and return
 
 It also uses a simplified version of [Metascraper's rules](https://metascraper.js.org/#/?id=how-it-works) to pick out the metadata for a given property.
 
-Once deployed to Cloudflare, add a `url` query param for the URL you want to scrape, e.g.
+### URL parameters:
+
+- `url` - the URL to scrape
+- `cleanUrl` - if `true`, the URL will be cleaned up to remove any tracking params, e.g. `utm_*` and `fbclid`
+
+Once deployed to **Cloudflare**, add a `url` query param for the URL you want to scrape, e.g.
 
 ```
 https://worker.cloudflare.com/?url=https://zander.wtf

@@ -1,6 +1,8 @@
 import { decode } from 'html-entities'
 import { ScrapeResponse } from './worker'
 import { randomUserAgent } from './randomUserAgent'
+import { FollowShortUrlResponse, followShortUrl } from './follow-short-url'
+import { generateErrorJSONResponse } from './json-response'
 
 const cleanText = (string: string) => decode(string.trim(), { level: 'html5' })
 
@@ -16,6 +18,7 @@ class Scraper {
   url: string
   response: Response
   metadata: ScrapeResponse
+  unshortenedInfo: FollowShortUrlResponse
 
   constructor() {
     this.rewriter = new HTMLRewriter()
@@ -24,7 +27,13 @@ class Scraper {
 
   async fetch(url: string) {
     this.url = url
-    this.response = await fetch(url, {
+    this.unshortenedInfo
+    try {
+      this.unshortenedInfo = await followShortUrl([url])
+    } catch (error) {
+      return generateErrorJSONResponse(error, url)
+    }
+    this.response = await fetch(this.unshortenedInfo.unshortened_url || url, {
       headers: {
         referrer: 'http://www.google.com/',
         'User-Agent': randomUserAgent(),
