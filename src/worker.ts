@@ -43,6 +43,15 @@ async function handleRequest(request: Request) {
   }
 
   try {
+    const requestedUrl = new URL(url)
+
+    // If the url is a reddit url, use old.reddit.com because it has much
+    // more information when scraping
+    if (url.includes('reddit.com')) {
+      requestedUrl.hostname = 'old.reddit.com'
+      url = requestedUrl.toString()
+    }
+
     await scraper.fetch(url)
   } catch (error) {
     return generateErrorJSONResponse(error, url)
