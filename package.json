@@ -2,24 +2,30 @@
   "name": "metadata-scraper",
   "version": "0.0.0",
   "private": true,
+  "author": {
+    "name": "Zander Martineau",
+    "url": "https://zander.wtf"
+  },
   "scripts": {
     "deploy": "wrangler deploy",
     "start": "wrangler dev",
-    "test": "vitest"
+    "test": "vitest",
+    "serve:test": "serve test -p 1234"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20230419.0",
+    "@cloudflare/workers-types": "^4.20231025.0",
+    "serve": "^14.2.1",
     "typescript": "^5.0.4",
-    "vite": "^4.4.9",
-    "vitest": "^0.34.5",
-    "wrangler": "^3.0.0"
+    "vite": "^4.5.0",
+    "vitest": "^0.34.6",
+    "wrangler": "^3.15.0"
   },
   "dependencies": {
     "file-extension": "^4.0.5",
     "html-entities": "^2.4.0",
-    "isomorphic-dompurify": "^1.8.0",
-    "tidy-url": "^1.8.0",
-    "top-user-agents": "^1.0.62",
+    "isomorphic-dompurify": "^1.9.0",
+    "tidy-url": "^1.10.1",
+    "top-user-agents": "^1.0.66",
     "unique-random-array": "^3.0.0"
   }
 }

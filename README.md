@@ -19,15 +19,15 @@ Once deployed to **Cloudflare**, add a `url` query param for the URL you want to
 
 ```sh
 # Basic example
-https://worker.cloudflare.com/?url=https://zander.wtf
+https://your-worker-name.cloudflare.com/?url=https://zander.wtf
 
 # Example with `cleanUrl=true`
-https://worker.cloudflare.com/?cleanUrl=true&url=https://poetsroad.bandcamp.com/?from=search&search_item_id=1141951669&search_item_type=b&search_match_part=%3F&search_page_id=1748155363&search_page_no=1&search_rank=1&search_sig=a9a9cbdfc454df7c2999f097dc8a216b
+https://your-worker-name.cloudflare.com/?cleanUrl=true&url=https://poetsroad.bandcamp.com/?from=search&search_item_id=1141951669&search_item_type=b&search_match_part=%3F&search_page_id=1748155363&search_page_no=1&search_rank=1&search_sig=a9a9cbdfc454df7c2999f097dc8a216b
 ```
 
 Response:
 
-From [my website](https://zander.wtf):
+From [my website](https://zander.wtf) (https://zander.wtf):
 
 ```json
 {
@@ -60,7 +60,7 @@ From [a YouTube video](https://www.youtube.com/watch?v=ctEksNz7tqg):
   "author": "",
   "image": "https://i.ytimg.com/vi/ctEksNz7tqg/maxresdefault.jpg",
   "feeds": [],
-  "date": "2023-09-19",
+  "date": "2023-09-19T07:00:07-07:00",
   "lang": "en",
   "logo": "",
   "video": "https://www.youtube.com/embed/ctEksNz7tqg",
@@ -79,11 +79,19 @@ From [a YouTube video](https://www.youtube.com/watch?v=ctEksNz7tqg):
       }
     ]
   },
-  "cleaned_url": "https://www.youtube.com/watch?v=ctEksNz7tqg",
   "url": "https://www.youtube.com/watch?v=ctEksNz7tqg",
   "urlType": "video"
 }
 ```
+
+## Testing
+
+1. Run `npm start`
+2. The test file in `src/test/index.html` can be used to test the worker locally. Run `npm run serve:test` to start a local server and then run a GET request against `http://127.0.0.1:8787/?url=http://localhost:1234` to view the output.
+
+### Unit tests
+
+Run `npm run test` to run the small suite of unit tests.
 
 ## Improvements and suggestions
 
