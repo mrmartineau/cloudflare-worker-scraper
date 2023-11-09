@@ -9,10 +9,13 @@ export const scraperRules: GetMetadataOptions[] = [
     name: 'title',
     multiple: false,
     selectors: [
+      { selector: 'meta[name="og:title"]', attribute: 'content' },
       { selector: 'meta[property="og:title"]', attribute: 'content' },
       { selector: 'meta[name=title]', attribute: 'content' },
+      { selector: 'meta[name="twitter:title"]', attribute: 'content' },
       { selector: 'meta[property="twitter:title"]', attribute: 'content' },
       { selector: 'title' },
+      { selector: 'h1[slot="title"]' },
       { selector: '.post-title' },
       { selector: '.entry-title' },
       { selector: 'h1[class*="title" i] a' },
@@ -24,6 +27,7 @@ export const scraperRules: GetMetadataOptions[] = [
     multiple: false,
     selectors: [
       { selector: 'status-body' },
+      { selector: 'meta[name="og:description"]', attribute: 'content' },
       { selector: 'meta[property="og:description"]', attribute: 'content' },
       {
         selector: 'meta[name="twitter:description"]',
@@ -43,6 +47,7 @@ export const scraperRules: GetMetadataOptions[] = [
     selectors: [
       { selector: 'link[rel=author]', attribute: 'href' },
       { selector: 'meta[name="author"]', attribute: 'content' },
+      { selector: 'meta[name="article:author"]', attribute: 'content' },
       { selector: 'meta[property="article:author"]', attribute: 'content' },
       { selector: '[itemprop*="author" i] [itemprop="name"]' },
     ],
@@ -55,12 +60,18 @@ export const scraperRules: GetMetadataOptions[] = [
         selector: 'link[rel="image_src"]',
         attribute: 'href',
       },
+      { selector: 'meta[name="og:image"]', attribute: 'content' },
+      { selector: 'meta[property="og:image"]', attribute: 'content' },
+      { selector: 'meta[name="og:image:url"]', attribute: 'content' },
+      { selector: 'meta[property="og:image:url"]', attribute: 'content' },
+      {
+        selector: 'meta[name="og:image:secure_url"]',
+        attribute: 'content',
+      },
       {
         selector: 'meta[property="og:image:secure_url"]',
         attribute: 'content',
       },
-      { selector: 'meta[property="og:image:url"]', attribute: 'content' },
-      { selector: 'meta[property="og:image"]', attribute: 'content' },
       { selector: 'meta[name="twitter:image:src"]', attribute: 'content' },
       {
         selector: 'meta[property="twitter:image:src"]',
@@ -98,6 +109,7 @@ export const scraperRules: GetMetadataOptions[] = [
     name: 'lang',
     multiple: false,
     selectors: [
+      { selector: 'meta[name="og:locale"]', attribute: 'content' },
       { selector: 'meta[property="og:locale"]', attribute: 'content' },
       { selector: 'meta[itemprop="inLanguage"]', attribute: 'content' },
       { selector: 'html', attribute: 'lang' },
@@ -107,9 +119,14 @@ export const scraperRules: GetMetadataOptions[] = [
     name: 'logo',
     multiple: false,
     selectors: [
+      { selector: 'meta[name="og:logo"]', attribute: 'content' },
       { selector: 'meta[property="og:logo"]', attribute: 'content' },
       { selector: 'meta[itemprop="logo"]', attribute: 'content' },
       { selector: 'img[itemprop="logo"]', attribute: 'src' },
+      {
+        selector: 'link[rel="apple-touch-icon-precomposed"]',
+        attribute: 'href',
+      },
     ],
   },
   {
@@ -117,10 +134,16 @@ export const scraperRules: GetMetadataOptions[] = [
     multiple: false,
     selectors: [
       {
+        selector: 'meta[name="og:video:secure_url"]',
+        attribute: 'content',
+      },
+      {
         selector: 'meta[property="og:video:secure_url"]',
         attribute: 'content',
       },
+      { selector: 'meta[name="og:video:url"]', attribute: 'content' },
       { selector: 'meta[property="og:video:url"]', attribute: 'content' },
+      { selector: 'meta[name="og:video"]', attribute: 'content' },
       { selector: 'meta[property="og:video"]', attribute: 'content' },
     ],
   },
